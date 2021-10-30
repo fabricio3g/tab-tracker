@@ -10,11 +10,11 @@ const app = express()
 
 app.use(morgan('combined'))
 app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded())
 
-
-app.get('/status', (req, res)=>{
-
-    res.send('Hello World')
+app.post('/register', (req, res)=>{
+    res.send('Hello, ' + req.body.email + '- pass: ' + req.body.password)
 
 })
 
