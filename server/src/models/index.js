@@ -28,7 +28,7 @@ fs.
     )
     .forEach(file =>{
         
-        const model = sequelize['import']('./'+file)
+        const model = sequelize['import'](__dirname + '/' + file)
         db[model.name] = model
     })
 
