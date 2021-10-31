@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const Sequelize = require('sequelize') 
+const { Sequelize, DataTypes  } = require('sequelize') 
 const config  = require('../config/config')
 
 
@@ -28,15 +28,17 @@ fs.
     )
     .forEach(file =>{
         
-        const model = sequelize.define(path.join(__dirname, file))
-        console.log(model)
+        const model = require(path.join(__dirname, file))(sequelize, DataTypes)
         db[model.name] = model
     })
 
 
+
+
 db.sequelize = sequelize
-db.Sequalize = Sequelize
+db.Sequelize = Sequelize
 
 
 module.exports = db
+
 
