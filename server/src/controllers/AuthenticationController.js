@@ -13,11 +13,6 @@ module.exports  = {
                 error: 'This email is already in use'
             })
         }
-        
-        
-
-        res.send('Hello, ' + req.body.email + '- pass: ' + req.body.password)
-    
-        
+          
     }
 }
