@@ -1,11 +1,13 @@
 
 <template>
-  <div class="about">
-    <h1>Register page</h1>
-    <input type="email" v-model="email" name="email" placeholder="Email"><br>
-    <input type="password" v-model="password" name="password" placeholder="Password"><br>
+  <div class="register form-group">
+    <h3 class="register-title">Register</h3>
+    <label for="exampleInputEmail1">Email address:</label>
+    <input type="email" class="form-control" v-model="email" name="email" placeholder="Email"><br>
+    <label for="exampleInputEmail1">Passowrd:</label>
+    <input type="password" class="form-control" v-model="password" name="password" placeholder="Password"><br>
     <div class="error" v-html="error"></div>
-    <button @click="register"> Register</button>
+    <button class="btn btn-primary" @click="register"> Register</button>
   </div>
 </template>
 
@@ -15,7 +17,7 @@ export default {
   data () {
     return {
       email: 'emailtesting@gmail.com',
-      password: 124,
+      password: 123456789,
       error: null
     }
   },
@@ -38,5 +40,12 @@ export default {
 <style scoped>
   .error{
     color: red;
+  }
+  .register{
+    margin: 0 auto;
+    width: 30rem;
+  }
+  .register-title{
+    text-align: center;
   }
 </style>
