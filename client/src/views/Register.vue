@@ -43,6 +43,7 @@ export default {
   }
   .register{
     margin: 0 auto;
+    padding:1.5rem;
     width: 30rem;
   }
   .register-title{
