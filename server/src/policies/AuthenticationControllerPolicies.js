@@ -36,7 +36,6 @@ module.exports = {
                 }
         }
         else{
-            console.log(value)
             await next()
         }
 
