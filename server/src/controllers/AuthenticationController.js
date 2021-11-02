@@ -1,15 +1,46 @@
 const { User }  = require('../models')
+const jwt = require('jsonwebtoken')
+const config = require('../config/config')
+const bcrypt = require('bcrypt')
+
+
+
+const hashPassword = ( password ) =>{
+
+    const SALT_ROUNDS = 10
+    
+    const salt =  bcrypt.genSaltSync(SALT_ROUNDS)
+ 
+    const hash =  bcrypt.hashSync(password, salt)
+    
+    return hash
+}
+
+
+const jwtSingUser =  (user) =>{
+
+    const ONE_WEEK = 60 * 60 * 24 * 7
+    return jwt.sign(user, config.authentication.jwtSecret,{
+        expiresIn: ONE_WEEK
+    }) 
+
+}
+
 
 module.exports  = {
     
     async register(req ,res){
-       
+
+        const hash = hashPassword(req.body.password)
+        
+        console.log(hash)
         try{
-            const user = await User.create({email: req.body.email, password: req.body.password})
-            console.log(user.toJSON())
+            const user = await User.create({email: req.body.email, password: hash})
+            
+         
             res.send(user.toJSON())
         } catch(err){
-            console.log(err)
+    
             res.status(400).send({
                 error: 'This email is already in use'
             })
@@ -30,14 +61,18 @@ module.exports  = {
 
            
            
+           
             if(!user){
                 return res.status(403).send({
                     error: 'The login information was incorrent'
                 })
             }
             
+            
+
+
             const isPasswordIsValid = () =>{
-                return password === user.password
+                return bcrypt.compareSync(password, user.password)
             }
 
             
@@ -49,8 +84,8 @@ module.exports  = {
                 })
             }
            
+        console.log('User log in here is his password: ', user.password)
            const userJson = user.toJSON()
-           
             return res.send({
                user: userJson
             })
