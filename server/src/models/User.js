@@ -5,7 +5,7 @@
             type: DataType.STRING,
             unique: true
         },
-        passowrd: DataType.STRING
+        password: DataType.STRING
     })
     return User
  }
