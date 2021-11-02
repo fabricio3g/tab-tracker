@@ -22,6 +22,4 @@ require('./routes')(app)
 sequelize.sync()
 .then(()=>{
         app.listen(config.port) 
-        
-
     })
