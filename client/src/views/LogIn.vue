@@ -1,13 +1,15 @@
 
 <template>
-  <div class="register form-group">
-    <h3 class="register-title">Login</h3>
-    <label for="exampleInputEmail1">Email address:</label>
-    <input type="email" class="form-control" v-model="email" name="email" placeholder="Email"><br>
-    <label for="exampleInputEmail1">Passowrd:</label>
-    <input type="password" class="form-control" v-model="password" name="password" placeholder="Password"><br>
-    <div class="error" v-html="error"></div>
-    <button class="btn btn-primary" @click="login">Login</button>
+  <div class="register">
+    <form class="form-group" autocomplete="off">
+      <h3 class="register-title">Login</h3>
+      <label for="exampleInputEmail1">Email address:</label>
+      <input  type="email" class="form-control" v-model="email" name="email" placeholder="Email"><br>
+      <label for="exampleInputEmail1">Passowrd:</label>
+      <input type="password" class="form-control" v-model="password" name="password" placeholder="Password"><br>
+      <div class="error" v-html="error"></div>
+      <button class="btn btn-primary" @click.prevent="login">Login</button>
+    </form>
   </div>
 </template>
 
@@ -24,10 +26,13 @@ export default {
   methods: {
     async login () {
       try {
-        await AuthenticationService.login({
+        const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
+        await this.$store.dispatch('setToken', response.data.token)
+        await this.$store.dispatch('setUser', response.data.token)
+     
       } catch (error) {
         this.error = error.response.data.error
         console.log(error)
