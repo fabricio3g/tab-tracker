@@ -17,7 +17,7 @@ const hashPassword = ( password ) =>{
 }
 
 
-const jwtSingUser =  (user) =>{
+const jwtSignUser =  (user) =>{
 
     const ONE_WEEK = 60 * 60 * 24 * 7
     return jwt.sign(user, config.authentication.jwtSecret,{
@@ -31,13 +31,12 @@ module.exports  = {
     
     async register(req ,res){
 
-        const hash = hashPassword(req.body.password)
         
-        console.log(hash)
         try{
+            const hash = hashPassword(req.body.password)
             const user = await User.create({email: req.body.email, password: hash})
-            
-         
+
+            console.log('Register: ',user.toJSON())
             res.send(user.toJSON())
         } catch(err){
     
@@ -84,10 +83,12 @@ module.exports  = {
                 })
             }
            
-        console.log('User log in here is his password: ', user.password)
-           const userJson = user.toJSON()
+        
+                const userJson = user.toJSON()
+                console.log('Login: ', userJson)
             return res.send({
-               user: userJson
+               user: userJson,
+               token: jwtSignUser(userJson)
             })
         } catch(err){
             console.log(err)
