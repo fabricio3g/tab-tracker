@@ -9,8 +9,8 @@
                     <li class="nav-item">
                     </li>
                 </ul>
-            <router-link class="router__link" to="/register">Register</router-link>
-            <router-link class="router__link" to="/login">Login</router-link>
+            <router-link  v-if="!this.$store.state.isUserLogIn" class="router__link" to="/register">Register</router-link>
+            <router-link  v-if="!this.$store.state.isUserLogIn" class="router__link" to="/login">Login</router-link>
         </nav>
         <router-view/>
     </div>
@@ -18,6 +18,12 @@
 </template>
 
 <script>
+
+export default {
+  data () {
+
+  }
+}
 </script>
 
 <style scoped>
@@ -40,5 +46,8 @@
         text-decoration: none;
         display: block;
         color: rgb(224, 221, 221) !important;
+    }
+    .nav_singin_register{
+        display: flex;
     }
 </style>
