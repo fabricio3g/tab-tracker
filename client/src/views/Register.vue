@@ -1,13 +1,15 @@
 
 <template>
-  <div class="register form-group">
-    <h3 class="register-title">Register</h3>
-    <label for="exampleInputEmail1">Email address:</label>
-    <input type="email" class="form-control" v-model="email" name="email" placeholder="Email"><br>
-    <label for="exampleInputEmail1">Passowrd:</label>
-    <input type="password" class="form-control" v-model="password" name="password" placeholder="Password"><br>
-    <div class="error" v-html="error"></div>
-    <button class="btn btn-primary" @click="register"> Register</button>
+  <div class="register">
+    <form class="form-group">
+      <h3 class="register-title">Register</h3>
+      <label for="exampleInputEmail1">Email address:</label>
+      <input type="email" class="form-control" v-model="email" name="email" placeholder="Email"><br>
+      <label for="exampleInputEmail1">Passowrd:</label>
+      <input type="password" class="form-control" v-model="password" name="password" placeholder="Password"><br>
+      <div class="error" v-html="error"></div>
+      <button type="button" class="btn btn-primary" @click.prevent="register"> Register</button>
+    </form>
   </div>
 </template>
 
@@ -24,10 +26,15 @@ export default {
   methods: {
     async register () {
       try {
-        await AuthenticationService.register({
-          email: this.email,
-          password: this.password
-        })
+            const response = await AuthenticationService.register({
+           email: this.email,
+           password: this.password
+          })
+        console.log(response.data)
+        
+        await this.$store.dispatch('setToken', response.data.token)
+        await this.$store.dispatch('setUser', response.data.token)
+        
       } catch (error) {
         this.error = error.response.data.error
         console.log(error)
