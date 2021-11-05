@@ -9,8 +9,9 @@
                     <li class="nav-item">
                     </li>
                 </ul>
-            <router-link  v-if="!this.$store.state.isUserLogIn" class="router__link" to="/register">Register</router-link>
-            <router-link  v-if="!this.$store.state.isUserLogIn" class="router__link" to="/login">Login</router-link>
+            <router-link  v-if="!this.$store.state.isUserLogIn" class="router__link btn btn-primary" to="/register">Register</router-link>
+            <router-link  v-if="!this.$store.state.isUserLogIn" class="router__link btn btn-secondary" to="/login">Login</router-link>
+            <router-link  v-if="this.$store.state.isUserLogIn"  @click="logout"  class="router__link btn btn-danger" to="/" >Log out</router-link >
         </nav>
         <router-view/>
     </div>
@@ -20,8 +21,12 @@
 <script>
 
 export default {
-  data () {
-
+  methods: {
+    logout () {
+      this.$store.dispatch('setToken', null)
+      this.$store.dispatch('setUser', null)
+      console.log(this.$store.sate)
+    }
   }
 }
 </script>
