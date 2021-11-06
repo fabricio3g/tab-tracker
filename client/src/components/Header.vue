@@ -12,7 +12,8 @@
                 </ul>
             <router-link  v-if="!this.$store.state.isUserLogIn" class="router__link btn btn-primary" to="/register">Register</router-link>
             <router-link  v-if="!this.$store.state.isUserLogIn" class="router__link btn btn-secondary" to="/login">Login</router-link>
-            <router-link  v-if="this.$store.state.isUserLogIn"  @click="logout"  class="router__link btn btn-danger" to="/" >Log out</router-link >
+            <router-link  v-if="this.$store.state.isUserLogIn"   class="router__link btn btn-primary" to="/song-create" >Create Song</router-link >
+            <router-link  v-if="this.$store.state.isUserLogIn"  @click="logout"  class="router__link btn btn-secondary" to="/" >Log out</router-link >
         </nav>
         <router-view/>
     </div>
