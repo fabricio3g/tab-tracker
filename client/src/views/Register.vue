@@ -1,8 +1,7 @@
 
 <template>
-  <div class="register">
+    <Panel title='Register'>
     <form class="form-group">
-      <h3 class="register-title">Register</h3>
       <label for="exampleInputEmail1">Email address:</label>
       <input type="email" class="form-control" v-model="email" name="email" placeholder="Email"><br>
       <label for="exampleInputEmail1">Passowrd:</label>
@@ -10,15 +9,16 @@
       <div class="error" v-html="error"></div>
       <button type="button" class="btn btn-primary" @click.prevent="register"> Register</button>
     </form>
-  </div>
+  </Panel>
 </template>
 
 <script>
+import Panel from '../components/Panel.vue'
 import AuthenticationService from '../services/AuthenticationService'
 export default {
   data () {
     return {
-      email: 'emailtesting@gmail.com',
+      email: 'correo@gmail.com',
       password: 123456789,
       error: null
     }
@@ -26,20 +26,20 @@ export default {
   methods: {
     async register () {
       try {
-            const response = await AuthenticationService.register({
-           email: this.email,
-           password: this.password
-          })
-        console.log(response.data)
-        
+        const response = await AuthenticationService.register({
+          email: this.email,
+          password: this.password
+        })
         await this.$store.dispatch('setToken', response.data.token)
         await this.$store.dispatch('setUser', response.data.token)
-        
       } catch (error) {
         this.error = error.response.data.error
         console.log(error)
       }
     }
+  },
+  components: {
+    Panel
   }
 }
 </script>
