@@ -1,24 +1,26 @@
 
 <template>
-  <div class="register">
-    <form class="form-group" autocomplete="off">
-      <h3 class="register-title">Login</h3>
-      <label for="exampleInputEmail1">Email address:</label>
-      <input  type="email" class="form-control" v-model="email" name="email" placeholder="Email"><br>
-      <label for="exampleInputEmail1">Passowrd:</label>
-      <input type="password" class="form-control" v-model="password" name="password" placeholder="Password"><br>
-      <div class="error" v-html="error"></div>
-      <button class="btn btn-primary" @click.prevent="login">Login</button>
-    </form>
-  </div>
+  <Panel title='Login'>
+    <div class="login">
+      <form class="form-group" autocomplete="off">
+        <label for="exampleInputEmail1">Email address:</label>
+        <input  type="email" class="form-control" v-model="email" name="email" placeholder="Email"><br>
+        <label for="exampleInputEmail1">Passowrd:</label>
+        <input type="password" class="form-control" v-model="password" name="password" placeholder="Password"><br>
+        <div class="error" v-html="error"></div>
+        <button class="btn btn-primary" @click.prevent="login">Login</button>
+      </form>
+    </div>
+  </Panel>
 </template>
 
 <script>
+import Panel from '../components/Panel.vue'
 import AuthenticationService from '../services/AuthenticationService'
 export default {
   data () {
     return {
-      email: 'emailtesting@gmail.com',
+      email: 'correo@gmail.com ',
       password: 123456789,
       error: null
     }
@@ -38,6 +40,9 @@ export default {
         console.log(error)
       }
     }
+  },
+  components: {
+    Panel
   }
 }
 </script>
@@ -45,13 +50,5 @@ export default {
 <style scoped>
   .error{
     color: red;
-  }
-  .register{
-    margin: 0 auto;
-    padding:1.5rem;
-    width: 30rem;
-  }
-  .register-title{
-    text-align: center;
   }
 </style>
