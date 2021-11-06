@@ -7,6 +7,7 @@
                             <router-link class="router__link" to="/">Home</router-link>
                     </li>
                     <li class="nav-item">
+                        <router-link class="router__link" to="/songs">Browse</router-link>
                     </li>
                 </ul>
             <router-link  v-if="!this.$store.state.isUserLogIn" class="router__link btn btn-primary" to="/register">Register</router-link>
