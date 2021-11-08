@@ -31,6 +31,11 @@ const routes = [
     path: '/songs/:songId',
     name: 'song',
     component: () => import('@/views/ViewSongs')
+  },
+  {
+    path: '/songs/:songId/edit',
+    name: 'song-edit',
+    component: () => import('@/views/EditSong')
   }
 ]
 
