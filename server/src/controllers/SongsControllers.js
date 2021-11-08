@@ -53,6 +53,22 @@ module.exports  = {
             })
         }
           
+    },
+    async put ( req ,res ){
+        console.log(req.body)
+        console.log(req.body.id)
+        try{
+          await Songs.update(req.body,{ where:{
+            id: req.body.id
+          }})
+          res.send(req.body)
+        } catch(err){
+            console.log(err)
+            res.status(500).send({
+                error: 'An error has occured trying to create the song'
+            })
+        }
+          
     }
 
 }
