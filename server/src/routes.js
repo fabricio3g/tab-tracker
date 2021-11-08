@@ -8,6 +8,6 @@ module.exports = ( app ) => {
     app.get('/songs', SongsController.index)
     app.get('/songs/:songId', SongsController.show)
     app.post('/song-create', SongsController.post)
-    
+    app.put('/songs/:songId', SongsController.put)
 }
 
