@@ -63,6 +63,11 @@ export default {
   textarea{
     height: 500px;
     font-family: monospace;
+    background: transparent !important;
+    overflow: auto;
+    border-style:none;
+    padding: 40px;
+    width: 100%;
   }
 
 </style>
