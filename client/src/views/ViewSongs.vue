@@ -9,6 +9,7 @@
           <div class="card-footer">
           <small class="text-muted">Genere: {{song.genere}}</small>
           <br>
+          <button class="btn btn-primary" @click.prevent="editSong">Edit Song</button>
         </div>
       </Panel>
       <Panel title='Youtube' class="youtube">
@@ -30,14 +31,25 @@ import SongServices from '../services/SongServices'
 export default {
   data () {
     return {
-      song: {}
+      song: {},
+      songId: ''
     }
   },
   components: {
     Panel
   },
+  methods: {
+    editSong () {
+      console.log('Edit song clicked')
+      this.$router.push({
+        name: 'song-edit',
+        params: { songId: this.songId }
+      })
+    }
+  },
   async mounted () {
     const songId = await this.$store.state.route.params.songId
+    this.songId = songId
     this.song = (await SongServices.show(songId)).data
   }
 }
@@ -58,8 +70,8 @@ export default {
   .song-metadata{
     margin: 0;
     padding: 0;
-    width: 200px;
-    height: 390px;
+    width: 300px;
+    height: 550px;
   }
   .song-metadata,  .lyric, .tab{
     margin: 1rem;
@@ -73,6 +85,10 @@ export default {
     border-style:none;
     padding: 40px;
     width: 100%;
+  }
+
+  button{
+
   }
 
 </style>
