@@ -2,13 +2,18 @@
   <div class="card-container" >
       <Panel title='Song Metadata' class="song-metadata">
        <img class="card-img-top" v-bind:src="song.albumImage" alt="Card image cap">
-                  <div class="card-body">
-                    <h4 class="card-title">{{song.title}}</h4>
-                    <p class="card-text">Artist: {{song.artist}}</p>
-                  </div>
-                  <div class="card-footer">
-                  <small class="text-muted">Genere: {{song.genere}}</small><br>
-                  </div>
+        <div class="card-body">
+          <h4 class="card-title">{{song.title}}</h4>
+          <p class="card-text">Artist: {{song.artist}}</p>
+          </div>
+          <div class="card-footer">
+          <small class="text-muted">Genere: {{song.genere}}</small>
+          <br>
+        </div>
+      </Panel>
+      <Panel title='Youtube' class="youtube">
+            <iframe v-bind:src="`http://www.youtube.com/embed/${song.youtubeId}`"
+            width="460" height="315" frameborder="0" allowfullscreen></iframe>
       </Panel>
       <Panel title='Tabs' class="tab">
           <textarea readonly class="form-control" v-model="song.tab"></textarea>
