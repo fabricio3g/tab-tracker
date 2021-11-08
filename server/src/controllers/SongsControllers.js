@@ -18,6 +18,19 @@ module.exports  = {
         }
           
     },
+    async show ( req ,res ){
+
+        try{
+          const song = await Songs.findByPk(req.params.songId)
+          res.json(song)
+        } catch(err){
+            console.log(err)
+            res.status(500).send({
+                error: 'An error has occured trying to fetch the songs'
+            })
+        }
+          
+    },
     async post ( req ,res ){
         const {title, artist, genere, albumImage, youtubeId, lyric, tab, album} = req.body
 

@@ -1,6 +1,7 @@
 
 <template>
     <Panel title='Songs'>
+        <router-link  v-if="this.$store.state.isUserLogIn"   class="router__link btn btn-primary" to="/song-create" >Create Song</router-link >
         <div class="card-container">
               <div class="card card-song" v-for="song in songs" :key="song.id">
                 <img class="card-img-top" v-bind:src="song.albumImage" alt="Card image cap">
@@ -35,8 +36,6 @@ export default {
   },
   methods: {
     navegateTo (obj) {
-      // const name = obj.name
-      // const songId = obj.params.songId
       this.$router.push(obj)
     }
   }
