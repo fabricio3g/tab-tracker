@@ -4,9 +4,6 @@
             <a class="navbar-brand" href="/">Tab Tracker</a>
                 <ul class="navbar-nav navbar-center mr-auto ' ">
                     <li class="nav-item">
-                            <router-link class="router__link" to="/">Home</router-link>
-                    </li>
-                    <li class="nav-item">
                         <router-link class="router__link" to="/songs">Browse</router-link>
                     </li>
                 </ul>
@@ -16,7 +13,6 @@
         </nav>
         <router-view/>
     </div>
-
 </template>
 
 <script>
