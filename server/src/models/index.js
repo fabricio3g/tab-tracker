@@ -34,6 +34,12 @@ fs.
 
 
 
+Object.keys(db).forEach(function( modelName ){
+    if('associete' in db[modelName]){
+        db[modelName].associate(db)
+    }
+})
+
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize
