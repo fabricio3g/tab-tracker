@@ -1,12 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '@/views/Home.vue'
 
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
   {
     path: '/register',
     name: 'register',
@@ -36,6 +30,10 @@ const routes = [
     path: '/songs/:songId/edit',
     name: 'song-edit',
     component: () => import('@/views/EditSong')
+  },
+  {
+    path: '/',
+    redirect: 'songs'
   }
 ]
 
