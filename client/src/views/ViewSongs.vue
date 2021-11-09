@@ -9,12 +9,14 @@
           <div class="card-footer">
           <small class="text-muted">Genere: {{song.genere}}</small>
           <br>
-          <button class="btn btn-primary" @click.prevent="editSong">Edit Song</button>
+          <button v-if="isUserLogIn" class="btn btn-primary" @click.prevent="editSong">Edit Song</button>
+          <button v-if="isUserLogIn" class="btn btn-dark" @click.prevent="bookmark">Bookmark</button>
+          <button v-if="isUserLogIn" class="btn btn-dark" @click.prevent="bookmark">Unbookmark</button>
         </div>
       </Panel>
       <Panel title='Youtube' class="youtube">
-            <iframe v-bind:src="`http://www.youtube.com/embed/${song.youtubeId}`"
-            width="460" height="315" frameborder="0" allowfullscreen></iframe>
+            <!-- <iframe v-bind:src="`http://www.youtube.com/embed/${song.youtubeId}`"
+            width="460" height="315" frameborder="0" allowfullscreen></iframe> -->
       </Panel>
       <Panel title='Tabs' class="tab">
           <textarea readonly class="form-control" v-model="song.tab"></textarea>
@@ -28,6 +30,7 @@
 <script>
 import Panel from '../components/Panel.vue'
 import SongServices from '../services/SongServices'
+import { mapState } from 'vuex'
 export default {
   data () {
     return {
@@ -37,6 +40,11 @@ export default {
   },
   components: {
     Panel
+  },
+  computed: {
+    ...mapState([
+      'isUserLogIn'
+    ])
   },
   methods: {
     editSong () {
@@ -71,7 +79,7 @@ export default {
     margin: 0;
     padding: 0;
     width: 300px;
-    height: 550px;
+    height: 600px;
   }
   .song-metadata,  .lyric, .tab{
     margin: 1rem;
@@ -88,7 +96,10 @@ export default {
   }
 
   button{
-
+    width: 10rem;
+    padding: 0;
+    margin: .10rem auto;
+    height: 2rem;
   }
 
 </style>
