@@ -1,11 +1,11 @@
 
 <template>
     <div>
-    <Panel title='Songs'>
-       <router-link  v-if="this.$store.state.isUserLogIn"   class="router__link btn btn-primary" to="/song-create" >Create Song</router-link >
       <Panel title='Search' class="search">
         <input v-model="search" type="text" class="search__song" placeholder="Search by title...">
       </Panel>
+    <Panel title='Songs'>
+       <router-link  v-if="this.$store.state.isUserLogIn"   class="router__link btn btn-primary" to="/song-create" >Create Song</router-link >
         <div class="card-container">
               <div class="card card-song" v-for="song in songs" :key="song.id">
                 <img class="card-img-top" v-bind:src="song.albumImage" alt="Card image cap">
