@@ -1,11 +1,11 @@
 
-module.exports = (sequelize, DataType) =>{
-
-    const Bookmark = sequelize.define('Songs',{})
-
-    Bookmark.associete =( modles )=> {
-        Bookmark.belogsTo(modles.User)
-        Bookmark.belogsTo(modles.Song)
+module.exports = (sequelize, DataTypes) => {
+    const Bookmark = sequelize.define('Bookmark', {})
+    
+    Bookmark.associate = function (models) {
+      Bookmark.belongsTo(models.User)
+      Bookmark.belongsTo(models.Songs)
     }
+  
     return Bookmark
 }
