@@ -12,12 +12,15 @@ module.exports  = {
         if(search){
             songs = await Songs.findAll({
                 where: {
-                    title: {
-                        [Op.like]: `%${search}%`
+                  $or: [
+                    'title', 'artist', 'genere', 'album'
+                  ].map(key => ({
+                    [key]: {
+                      $like: `%${search}%`
                     }
+                  }))
                 }
               })
-              console.log(songs)
 
         }else {
           songs = await Songs.findAll({
@@ -36,7 +39,7 @@ module.exports  = {
     async show ( req ,res ){
 
         try{
-          const song = await Songs.findByPk(req.params.songId)
+          const song = await Songs.findById(req.params.songId)
           res.json(song)
         } catch(err){
             console.log(err)
