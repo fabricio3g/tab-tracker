@@ -33,7 +33,7 @@ export default {
           password: this.password
         })
         await this.$store.dispatch('setToken', response.data.token)
-        await this.$store.dispatch('setUser', response.data.token)
+        await this.$store.dispatch('setUser', response.data.user)
         this.$router.push({ path: '/' })
       } catch (error) {
         this.error = error.response.data.error
