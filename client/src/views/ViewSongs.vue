@@ -10,8 +10,8 @@
           <small class="text-muted">Genere: {{song.genere}}</small>
           <br>
           <button v-if="isUserLogIn" class="btn btn-primary" @click.prevent="editSong">Edit Song</button>
-          <button v-if="isUserLogIn" class="btn btn-dark" @click.prevent="bookmark">Bookmark</button>
-          <button v-if="isUserLogIn" class="btn btn-dark" @click.prevent="bookmark">Unbookmark</button>
+          <button v-if="isUserLogIn && !this.isBookmarked" class="btn btn-dark" @click="bookmark">Bookmark</button>
+          <button v-if="isUserLogIn && this.isBookmarked" class="btn btn-dark" @click="unbookmark">Unbookmark</button>
         </div>
       </Panel>
       <Panel title='Youtube' class="youtube">
@@ -30,12 +30,14 @@
 <script>
 import Panel from '../components/Panel.vue'
 import SongServices from '../services/SongServices'
+import BookmarkServices from '../services/BookmarkServices'
 import { mapState } from 'vuex'
 export default {
   data () {
     return {
       song: {},
-      songId: ''
+      songId: '',
+      isBookmarked: null
     }
   },
   components: {
@@ -53,12 +55,53 @@ export default {
         name: 'song-edit',
         params: { songId: this.songId }
       })
+    },
+    async bookmark () {
+      try {
+        console.log('The bookmark button was clicked')
+        this.isBookmarked = (await BookmarkServices.post({
+          songId: this.songId,
+          userId: String(this.$store.state.user.id)
+        })).data
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    async unbookmark () {
+      try {
+        await BookmarkServices.delete({
+          songId: this.songId,
+          userId: this.$store.state.user.id
+        })
+      } catch (err) {
+        console.log(err)
+      }
     }
   },
   async mounted () {
-    const songId = await this.$store.state.route.params.songId
-    this.songId = songId
-    this.song = (await SongServices.show(songId)).data
+    const showSongInfo = async () => {
+      const songId = await this.$store.state.route.params.songId
+      this.songId = songId
+      this.song = (await SongServices.show(songId)).data
+    }
+
+    const findBookmark = async () => {
+      console.log('Find book function')
+      this.isBookmarked = (await BookmarkServices.index({
+        songId: this.$store.state.route.params.songId,
+        userId: this.$store.state.user.id
+      })).data
+
+      console.log(this.isBookmarked)
+    }
+    if (this.isUserLogIn) {
+      showSongInfo()
+      findBookmark()
+
+      console.log(this.isBookmarked)
+    }
+
+    showSongInfo()
   }
 }
 </script>
