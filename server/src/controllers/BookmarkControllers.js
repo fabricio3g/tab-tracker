@@ -63,14 +63,30 @@ module.exports  = {
     },
     async delete ( req ,res ){
 
-      const { bookmarkId } = req.query
+      
+      
+      
+    try{
+        const { id } = req.query
         
-      try{
+        const bookmark = await Bookmark.findOne({
+          where:{
+            id: id
+          }
+        })
 
-        const bookmark = await Bookmark.findById(bookmarkId)
-        bookmark.destroy()
+        console.log(bookmark)
+
+        if(!bookmark){
+          return res.status(404).send({
+            error: 'You don\'t have acces here'
+          })
+        }
+
+
+        await bookmark.destroy()
         res.send(bookmark)
-
+      
       }catch(err){
         res.status(505).send({
           error: 'Error has ocurred trying to DELETE the bookmark'
