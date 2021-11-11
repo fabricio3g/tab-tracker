@@ -19,5 +19,8 @@ export default {
   },
   post (song) {
     return Api.post('song-create', song)
+  },
+  delete (songData) {
+    return Api.post('song-create', songData)
   }
 }

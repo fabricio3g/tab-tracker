@@ -50,7 +50,7 @@ module.exports  = {
           
     },
     async post ( req ,res ){
-        const {title, artist, genere, albumImage, youtubeId, lyric, tab, album} = req.body
+        const {title, artist, genere, albumImage, youtubeId, lyric, tab, album, userId} = req.body
 
         try{
           const song = await Songs.create({
@@ -61,7 +61,8 @@ module.exports  = {
             albumImage,
             youtubeId,
             lyric,
-            tab
+            tab,
+            userId
           })
           res.send(song)
         } catch(err){
@@ -87,6 +88,11 @@ module.exports  = {
             })
         }
           
-    }
+    },
+    async delete ( req ,res ){
+      
+      const { songId, userId } = req.query
+        
+  }
 
 }

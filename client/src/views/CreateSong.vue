@@ -38,7 +38,8 @@ export default {
         albumImage: null,
         youtubeId: null,
         lyric: null,
-        tab: null
+        tab: null,
+        userId: this.$store.state.user.id
       }
     }
   },
