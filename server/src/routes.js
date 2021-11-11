@@ -13,6 +13,6 @@ module.exports = ( app ) => {
 
     app.get('/bookmarks', BookmarkControllers.index)
     app.post('/bookmarks', BookmarkControllers.post)
-    app.delete('/bookmarks/:bookmarkId', BookmarkControllers.delete)
+    app.delete('/bookmarks', BookmarkControllers.delete)
 }
 
