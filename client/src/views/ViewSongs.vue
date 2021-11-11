@@ -68,11 +68,12 @@ export default {
       }
     },
     async unbookmark () {
+      console.log('Unbookmark was clicked')
       try {
         await BookmarkServices.delete({
-          songId: this.songId,
-          userId: this.$store.state.user.id
+          id: this.isBookmarked.id
         })
+        this.isBookmarked = null
       } catch (err) {
         console.log(err)
       }
