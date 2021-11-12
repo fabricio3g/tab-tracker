@@ -32,6 +32,11 @@ const routes = [
     component: () => import('@/views/EditSong')
   },
   {
+    path: '/bookmarkhistory',
+    name: 'bookmarkhistory',
+    component: () => import('@/views/BookmarkHistory')
+  },
+  {
     path: '/',
     redirect: 'songs'
   }
