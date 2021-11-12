@@ -1,10 +1,10 @@
 
 <template>
-    <Panel title='Register'>
+    <Panel title='Register' class="register">
     <form class="form-group">
       <label for="exampleInputEmail1">Email address:</label>
       <input type="email" class="form-control" v-model="email" name="email" placeholder="Email"><br>
-      <label for="exampleInputEmail1">Passowrd:</label>
+      <label >Passowrd:</label>
       <input type="password" class="form-control" v-model="password" name="password" placeholder="Password"><br>
       <div class="error" v-html="error"></div>
       <button type="button" class="btn btn-primary" @click.prevent="register"> Register</button>
@@ -47,7 +47,9 @@ export default {
 
 <style scoped>
   .error{
-    color: red;
+    color: rgb(255, 79, 79);
+    font-family: 'Courier New', Courier, monospace;
+    padding-bottom: 1rem;
   }
   .register{
     margin: 0 auto;
@@ -56,5 +58,10 @@ export default {
   }
   .register-title{
     text-align: center;
+  }
+  @media (max-width: 767px){
+    .register{
+      width: 80%;
+    }
   }
 </style>
