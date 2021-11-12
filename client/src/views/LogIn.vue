@@ -1,7 +1,7 @@
 
 <template>
-  <Panel title='Login'>
-    <div class="login">
+  <Panel title='Login' class="login">
+    <div >
       <form class="form-group" autocomplete="off">
         <label for="exampleInputEmail1">Email address:</label>
         <input  type="email" class="form-control" v-model="email" name="email" placeholder="Email"><br>
@@ -34,7 +34,9 @@ export default {
         })
         await this.$store.dispatch('setToken', response.data.token)
         await this.$store.dispatch('setUser', response.data.user)
-        this.$router.push({ path: '/' })
+        if (response) {
+          this.$router.push({ path: '/' })
+        }
       } catch (error) {
         this.error = error.response.data.error
         console.log(error)
@@ -50,5 +52,12 @@ export default {
 <style scoped>
   .error{
     color: red;
+    font-family: 'Courier New', Courier, monospace;
+
+  }
+  @media (max-width: 767px){
+    .login{
+      width: 80%;
+    }
   }
 </style>
