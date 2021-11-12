@@ -1,15 +1,20 @@
 <template>
     <div class="header">
         <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand" href="/">Tab Tracker</a>
-                <ul class="navbar-nav navbar-center mr-auto ' ">
-                    <li class="nav-item">
-                        <router-link class="router__link" to="/songs">Browse</router-link>
-                    </li>
-                </ul>
-            <router-link  v-if="!this.$store.state.isUserLogIn" class="router__link btn btn-primary" to="/register">Register</router-link>
-            <router-link  v-if="!this.$store.state.isUserLogIn" class="router__link btn btn-secondary" to="/login">Login</router-link>
-            <router-link  v-if="this.$store.state.isUserLogIn"  @click="logout"  class="router__link btn btn-secondary" to="/" >Log out</router-link >
+            <a  style="margin:15px;" class="navbar-brand" href="/"><img width="50" src="../assets/guitar-pick-pick.svg" style="path{
+                fill:#fff;
+            }" alt="">&#160;&#160;TAB TRACKER</a>
+
+            <div class="drop-down">
+            <button class="humburger_button" @click="dropdownMenu" >&#x2630;</button>
+              <div class="dropdown-content dropdown-content-show" id="dropdown-content">
+                <router-link class="btn btn-info router__link" to="/songs">Browse</router-link>
+                <router-link class="btn btn-info router__link" to="/bookmarkhistory">Bookmark History</router-link>
+                <router-link  v-if="!this.$store.state.isUserLogIn" class="router__link btn btn-primary" to="/register">Register</router-link>
+                <router-link  v-if="!this.$store.state.isUserLogIn" class="router__link btn btn-secondary" to="/login">Login</router-link>
+                <router-link  v-if="this.$store.state.isUserLogIn"  @click="logout"  class="router__link btn btn-secondary" to="/" >Log out</router-link >
+              </div>
+            </div>
         </nav>
         <router-view/>
     </div>
@@ -23,21 +28,16 @@ export default {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)
       console.log(this.$store.sate)
+    },
+    dropdownMenu () {
+      const element = document.getElementById('dropdown-content')
+      element.classList.toggle('dropdown-content-show')
     }
   }
 }
 </script>
 
 <style scoped>
-    .navbar-center{
-        display:flex;
-        flex-direction:row;
-        justify-content: space-between;
-
-    }
-    .navbar-center > li{
-         color: white;
-    }
     .router__link{
         text-decoration: none;
         display: block;
@@ -47,9 +47,59 @@ export default {
     .router__link:hover{
         text-decoration: none;
         display: block;
-        color: rgb(224, 221, 221) !important;
+        color: rgb(233, 204, 204) !important;
     }
     .nav_singin_register{
         display: flex;
+    }
+    .humburger_button{
+        display: none;
+        padding: .5rem;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        border: none;
+        border-radius: .5rem;
+    }
+    .dropdown-content{
+        display: flex;
+        align-items: center;
+        border-radius: .5rem;
+        background-color: #ffffff;
+        margin: .5rem;
+    }
+    img{
+     filter: brightness(0) invert(1);
+    }
+    .navbar{
+        width: 100%;
+    }
+    @media (max-width: 767px) {
+        .humburger_button{
+            display: flex;
+            position: sticky;
+        }
+        .drop-down{
+            display: inline-block;
+            background: none;
+            border: #ffffff;
+            border-radius: .5rem;
+            padding: 2rem;
+        }
+        .dropdown-content{
+            display: none;
+            padding: 12px 16px;
+            flex-direction: column;
+            position: absolute;
+            transform: translateX(-150px);
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            min-width: 160px;
+        }
+        .navbar{
+            display: flex;
+            flex-wrap: nowrap;
+        }
+        .dropdown-content-show{
+            display: block !important;
+        }
     }
 </style>
