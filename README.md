@@ -6,6 +6,7 @@
 
 ### Preview
 
+![alt text](https://github.com/fabricio3g/tab-tracker/blob/main/preview/preview.gif?raw=true)
 
 
 
