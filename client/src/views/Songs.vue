@@ -2,7 +2,7 @@
 <template>
     <div>
       <Panel title='Search' class="search">
-        <input v-model="search" type="text" class="search__song" placeholder="Search by title...">
+        <input v-model="search" type="text" class="search__song" placeholder="Search by title, Genre, Artist...">
       </Panel>
     <Panel title='Songs'>
        <router-link  v-if="this.$store.state.isUserLogIn"   class="router__link btn btn-primary" to="/song-create" >Create Song</router-link >
@@ -14,7 +14,7 @@
                     <p class="card-text">Artist: {{song.artist}}</p>
                   </div>
                   <div class="card-footer">
-                  <small class="text-muted">Genere: {{song.genere}}</small><br>
+                  <small class="text-muted">Genre: {{song.genere}}</small><br>
                   <button class="btn btn-primary" @click.prevent="navegateTo({name: 'song', params: { songId: song.id} })">View</button>
             </div>
           </div>
