@@ -8,11 +8,11 @@ module.exports = ( app ) => {
     app.post('/login', AutheticationController.login)
     app.get('/songs', SongsController.index)
     app.get('/songs/:songId', SongsController.show)
-    app.post('/song-create',isAuthenticated,SongsController.post)
+    app.post('/song-create' ,SongsController.post)
     app.put('/songs/:songId', isAuthenticated , SongsController.put)
 
     app.get('/bookmarks', isAuthenticated, BookmarkControllers.index)
-    app.post('/bookmarks', isAuthenticated ,BookmarkControllers.post)
+    app.post('/bookmarks',BookmarkControllers.post)
     app.delete('/bookmarks', BookmarkControllers.delete)
 }
 
