@@ -3,8 +3,8 @@
   <Panel title='Login' class="login">
     <div >
       <form class="form-group" autocomplete="off">
-        <label for="exampleInputEmail1">Email address:</label>
-        <input  type="email" class="form-control" v-model="email" name="email" placeholder="Email"><br>
+        <label> Email address:</label>
+        <input type="email" class="form-control" v-model="email" name="email" placeholder="Email"><br>
         <label for="exampleInputEmail1">Passowrd:</label>
         <input type="password" class="form-control" v-model="password" name="password" placeholder="Password"><br>
         <div class="error" v-html="error"></div>
