@@ -1,5 +1,5 @@
 const { Bookmark }  = require('../models')
-
+const { Songs }  = require('../models')
 
 module.exports  = {
     
@@ -9,15 +9,31 @@ module.exports  = {
       console.log(req.query)
       console.log('Book index is called')
       try{
+          console.log(userId, songId)
+        if(!songId){
+          const bookmark = await Bookmark.findAll({
+            where:{
+                UserId: userId
+            },
+            include:{
+              model: Songs
+            }
+            }).map(bookmark => bookmark.toJSON())
+            console.log(bookmark)
+            res.send(bookmark)
 
-        const bookmark = await Bookmark.findOne({
+        } else{
+          const bookmark = await Bookmark.findOne({
             where:{
                 SongId: songId,
                 UserId: userId
             }
-        })
+            })
+            res.send(bookmark)
+        }
         
-        res.send(bookmark)
+        
+        
 
       }catch(err){
         res.status(404).send({
