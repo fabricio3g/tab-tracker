@@ -7,6 +7,7 @@ const config = require('./config/config')
 
 const app = express()
 
+require('./passport')
 
 
 app.use(morgan('combined'))
