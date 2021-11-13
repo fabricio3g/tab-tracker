@@ -4,14 +4,14 @@ import createPersistedState from 'vuex-persistedstate'
 export default createStore({
   strict: true,
   state: {
-    toke: null,
+    token: null,
     user: null,
     isUserLogIn: false
   },
   plugins: [createPersistedState()],
   mutations: {
     setToken (state, token) {
-      state.toke = token
+      state.token = token
       if (token) {
         state.isUserLogIn = true
       } else {
