@@ -4,9 +4,8 @@ const { Songs }  = require('../models')
 module.exports  = {
     
     async index ( req ,res ){
-
+      console.log('Req user', req.user)
       const { songId, userId } = req.query
-      console.log(req.query)
       console.log('Book index is called')
       try{
           console.log(userId, songId)
