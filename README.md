@@ -11,6 +11,6 @@
 
 
 ### Todo
-- [] Should fix conflict with the backend and problem with ui when the front end is builded  
+- [ ] Should fix conflict with the backend and problem with ui when the front end is builded  
 - [ ] Add delet feature
 - [ ] Refactor a bunch of stuff, hard to read templates code
