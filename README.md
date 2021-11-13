@@ -1,5 +1,7 @@
 # Tab Tracker
 
+A web app to keep tracking your guitar tabs
+
 >it works for now but when i build and serve all the files can have conflict with the routes, should be fixed
 
 
