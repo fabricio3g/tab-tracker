@@ -2,9 +2,9 @@
 <template>
     <Panel title='Register' class="register">
     <form class="form-group">
-      <label for="exampleInputEmail1">Email address:</label>
+      <label> Email address:</label>
       <input type="email" class="form-control" v-model="email" name="email" placeholder="Email"><br>
-      <label >Passowrd:</label>
+      <label> Passowrd:</label>
       <input type="password" class="form-control" v-model="password" name="password" placeholder="Password"><br>
       <div class="error" v-html="error"></div>
       <button type="button" class="btn btn-primary" @click.prevent="register"> Register</button>
