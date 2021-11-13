@@ -4,12 +4,11 @@
             <a  style="margin:15px;" class="navbar-brand" href="/"><img width="50" src="../assets/guitar-pick-pick.svg" style="path{
                 fill:#fff;
             }" alt="">&#160;&#160;TAB TRACKER</a>
-
             <div class="drop-down">
             <button class="humburger_button" @click="dropdownMenu" >&#x2630;</button>
               <div class="dropdown-content dropdown-content-show" id="dropdown-content">
-                <router-link class="btn btn-info router__link" to="/songs">Browse</router-link>
-                <router-link class="btn btn-info router__link" to="/bookmarkhistory">Bookmark History</router-link>
+                <router-link  class="btn btn-info router__link" to="/songs">Browse</router-link>
+                <router-link v-if="this.$store.state.isUserLogIn" class="btn btn-info  router__link" to="/bookmarkhistory">Bookmark History</router-link>
                 <router-link  v-if="!this.$store.state.isUserLogIn" class="router__link btn btn-primary" to="/register">Register</router-link>
                 <router-link  v-if="!this.$store.state.isUserLogIn" class="router__link btn btn-secondary" to="/login">Login</router-link>
                 <router-link  v-if="this.$store.state.isUserLogIn"  @click="logout"  class="router__link btn btn-secondary" to="/" >Log out</router-link >
@@ -42,12 +41,10 @@ export default {
         text-decoration: none;
         display: block;
         margin: 1rem;
-        color: rgb(255, 255, 255) !important;
     }
     .router__link:hover{
         text-decoration: none;
         display: block;
-        color: rgb(233, 204, 204) !important;
     }
     .nav_singin_register{
         display: flex;
@@ -63,7 +60,7 @@ export default {
         display: flex;
         align-items: center;
         border-radius: .5rem;
-        background-color: #ffffff;
+        /* background-color: #ffffff; */
         margin: .5rem;
     }
     img{
@@ -89,6 +86,7 @@ export default {
             padding: 12px 16px;
             flex-direction: column;
             position: absolute;
+            background: #ffffff;
             transform: translateX(-150px);
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
