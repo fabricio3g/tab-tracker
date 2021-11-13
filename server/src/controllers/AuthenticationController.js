@@ -37,6 +37,7 @@ module.exports  = {
             const user = await User.create({email: req.body.email, password: hash})
 
             console.log('Register: ',user.toJSON())
+
             res.send(user.toJSON())
         } catch(err){
     
